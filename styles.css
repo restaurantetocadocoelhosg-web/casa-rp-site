@@ -1,0 +1,299 @@
+/* ============================================================
+   CASA RP RESISTÊNCIAS — navy profundo + dourado industrial
+   ============================================================ */
+:root {
+  --navy: #0e1b33;
+  --navy-escuro: #081124;
+  --navy-claro: #16294d;
+  --ouro: #f5b800;
+  --ouro-claro: #ffd75e;
+  --ouro-escuro: #d4941e;
+  --branco: #f6f8fc;
+  --branco-suave: rgba(246, 248, 252, 0.78);
+  --whatsapp: #25d366;
+
+  --display: "Archivo", "Arial Black", sans-serif;
+  --sans: "Inter", -apple-system, Segoe UI, Roboto, sans-serif;
+
+  --text-base: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+  --text-h1: clamp(2.4rem, 1.2rem + 5.5vw, 5rem);
+  --text-h2: clamp(1.8rem, 1.3rem + 2.4vw, 3rem);
+  --space-section: clamp(4rem, 3rem + 4vw, 7rem);
+  --radius: 16px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: var(--text-base);
+  line-height: 1.65;
+  color: var(--branco);
+  background:
+    radial-gradient(ellipse 90% 40% at 70% 0%, rgba(245, 184, 0, 0.10), transparent),
+    linear-gradient(180deg, var(--navy) 0%, var(--navy-escuro) 100%);
+  background-attachment: fixed;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--ouro-claro); }
+
+h1, h2, h3 { font-family: var(--display); line-height: 1.08; margin: 0 0 0.5em; letter-spacing: -0.01em; }
+h1 { font-weight: 900; }
+h2 { font-size: var(--text-h2); font-weight: 800; color: var(--branco); }
+h2 em { font-style: normal; color: var(--ouro); }
+h3 { font-size: 1.2rem; font-weight: 700; }
+
+.wrap { width: min(100% - 2.5rem, 1160px); margin-inline: auto; }
+section { padding-block: var(--space-section); }
+
+.eyebrow {
+  font-size: 0.78rem; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--ouro); font-weight: 700; margin-bottom: 0.9rem;
+}
+.risco {
+  width: 70px; height: 3px; margin: 1rem 0 1.4rem;
+  background: linear-gradient(90deg, var(--ouro), transparent);
+}
+.muted { color: var(--branco-suave); }
+
+/* ---------- Header ---------- */
+.topo {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(8, 17, 36, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(245, 184, 0, 0.28);
+}
+.topo-in { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.65rem; }
+.marca {
+  display: flex; align-items: center; gap: 0.6rem;
+  color: var(--branco); text-decoration: none; min-width: 0;
+}
+.losango {
+  width: 40px; height: 40px; flex-shrink: 0;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--ouro-claro), var(--ouro-escuro));
+  transform: rotate(45deg); border-radius: 8px;
+}
+.losango span {
+  transform: rotate(-45deg); font-family: var(--display);
+  font-weight: 900; color: var(--navy-escuro); font-size: 0.95rem; letter-spacing: 0;
+}
+.marca-txt { line-height: 1.1; }
+.marca-txt strong { font-family: var(--display); font-weight: 800; font-size: 1.02rem; display: block; }
+.marca-txt small { color: var(--ouro); font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; }
+.menu { display: flex; gap: 1.3rem; flex-wrap: wrap; }
+.menu a {
+  color: var(--branco-suave); text-decoration: none; font-size: 0.9rem; font-weight: 600;
+  padding-block: 0.3rem; border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.menu a:hover, .menu a:focus-visible { color: var(--ouro-claro); border-color: var(--ouro); }
+.menu .destaque {
+  border: 2px solid var(--ouro); border-radius: 999px; padding: 0.35rem 1rem; color: var(--ouro-claro);
+}
+.menu .destaque:hover { background: var(--ouro); color: var(--navy-escuro); }
+@media (max-width: 980px) { .menu { display: none; } }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; overflow: hidden; padding-block: clamp(4.5rem, 10vh, 7.5rem) clamp(3.5rem, 8vh, 6rem); }
+.hero::before {
+  content: ""; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(245, 184, 0, 0.16) 1.5px, transparent 1.5px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(ellipse 55% 65% at 82% 22%, #000, transparent);
+  pointer-events: none;
+}
+.hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(2rem, 4vw, 4rem); align-items: center; position: relative; }
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
+.hero h1 { font-size: var(--text-h1); margin: 0 0 0.3em; }
+.hero h1 .ouro { color: var(--ouro); text-shadow: 0 0 40px rgba(245, 184, 0, 0.35); }
+.hero .slogan {
+  font-family: var(--display); color: var(--ouro-claro); letter-spacing: 0.32em;
+  text-transform: uppercase; font-size: 0.82rem; font-weight: 700; margin-bottom: 1.2rem;
+}
+.hero p.lead { max-width: 32rem; font-size: clamp(1.02rem, 1rem + 0.4vw, 1.25rem); color: var(--branco-suave); margin: 0 0 1.8rem; }
+.hero-selos { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-bottom: 1.8rem; }
+.selo {
+  font-size: 0.8rem; font-weight: 600; padding: 0.42rem 0.95rem; border-radius: 999px;
+  border: 1px solid rgba(245, 184, 0, 0.5); color: var(--ouro-claro); background: rgba(245, 184, 0, 0.07);
+}
+.hero-foto {
+  border-radius: var(--radius); overflow: hidden; position: relative;
+  border: 1px solid rgba(245, 184, 0, 0.35);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 60px rgba(245, 184, 0, 0.08);
+}
+.hero-foto img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- Botões ---------- */
+.acoes { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.95rem 1.7rem; border-radius: 12px;
+  font-weight: 800; font-size: 1rem; text-decoration: none; font-family: var(--display);
+  transition: transform 0.18s var(--ease), box-shadow 0.18s, background 0.18s, color 0.18s, filter 0.18s;
+}
+.btn:hover, .btn:focus-visible { transform: translateY(-2px); }
+.btn-ouro {
+  background: linear-gradient(135deg, var(--ouro-claro), var(--ouro-escuro));
+  color: var(--navy-escuro); box-shadow: 0 12px 34px rgba(245, 184, 0, 0.35);
+}
+.btn-ouro:hover { box-shadow: 0 16px 42px rgba(245, 184, 0, 0.5); filter: brightness(1.05); }
+.btn-borda { border: 2px solid var(--ouro); color: var(--ouro-claro); background: rgba(8, 17, 36, 0.5); }
+.btn-borda:hover { background: var(--ouro); color: var(--navy-escuro); }
+.btn-wpp { background: var(--whatsapp); color: #06341c; }
+.btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+/* ---------- Faixa marquee ---------- */
+.faixa {
+  border-block: 1px solid rgba(245, 184, 0, 0.3);
+  background: rgba(245, 184, 0, 0.06); padding-block: 0.85rem; overflow: hidden;
+}
+.marquee { display: flex; gap: 3rem; white-space: nowrap; animation: rolar 38s linear infinite; width: max-content; }
+.marquee span { font-family: var(--display); font-weight: 700; font-size: 0.88rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--branco-suave); }
+.marquee span::before { content: "◆ "; color: var(--ouro); }
+@keyframes rolar { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .marquee { animation: none; flex-wrap: wrap; white-space: normal; } }
+
+/* ---------- Linhas de produto (grid) ---------- */
+.cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+@media (max-width: 980px) { .cat-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .cat-grid { grid-template-columns: 1fr; } }
+.cat {
+  position: relative; border-radius: var(--radius); overflow: hidden;
+  border: 1px solid rgba(245, 184, 0, 0.25); background: var(--navy-claro);
+  min-height: 340px; display: grid; text-decoration: none;
+  transition: border-color 0.25s, transform 0.25s var(--ease), box-shadow 0.25s;
+}
+.cat:hover { border-color: var(--ouro); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.45); }
+.cat img {
+  grid-area: 1 / 1; width: 100%; height: 100%; object-fit: cover; object-position: center 62%;
+  transition: transform 0.6s var(--ease);
+}
+.cat:hover img { transform: scale(1.05); }
+.cat .véu {
+  grid-area: 1 / 1; align-self: end;
+  background: linear-gradient(180deg, transparent 30%, rgba(8, 17, 36, 0.95) 82%);
+  padding: 4rem 1.2rem 1.1rem;
+}
+.cat h3 { color: var(--branco); margin: 0 0 0.2rem; }
+.cat p { margin: 0; font-size: 0.88rem; color: var(--branco-suave); }
+.cat .tag {
+  position: absolute; top: 0.9rem; left: 0.9rem;
+  background: linear-gradient(135deg, var(--ouro-claro), var(--ouro-escuro));
+  color: var(--navy-escuro); font-family: var(--display); font-weight: 800;
+  font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.3rem 0.7rem; border-radius: 999px;
+}
+
+/* ---------- Chuveiros / marcas ---------- */
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 4vw, 4rem); align-items: center; }
+.split.invertido > .split-img { order: 2; }
+@media (max-width: 860px) {
+  .split { grid-template-columns: 1fr; }
+  .split.invertido > .split-img { order: 0; }
+}
+.split-img {
+  border-radius: var(--radius); overflow: hidden; max-height: 600px;
+  border: 1px solid rgba(245, 184, 0, 0.3);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.5);
+}
+.split-img img { width: 100%; height: 100%; object-fit: cover; }
+.lista-check { list-style: none; padding: 0; margin: 1rem 0 1.6rem; display: grid; gap: 0.55rem; }
+.lista-check li { padding-left: 1.7rem; position: relative; color: var(--branco-suave); }
+.lista-check li::before { content: "✔"; position: absolute; left: 0; color: var(--ouro); font-weight: 700; }
+.marcas { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0 1.6rem; }
+.marca-pill {
+  font-family: var(--display); font-weight: 800; font-size: 0.9rem;
+  padding: 0.5rem 1.1rem; border-radius: 10px;
+  background: rgba(246, 248, 252, 0.07); border: 1px solid rgba(246, 248, 252, 0.25);
+}
+
+/* ---------- Como comprar (passos) ---------- */
+.passos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; counter-reset: passo; }
+@media (max-width: 860px) { .passos { grid-template-columns: 1fr; } }
+.passo {
+  border: 1px solid rgba(245, 184, 0, 0.25); border-radius: var(--radius);
+  background: rgba(246, 248, 252, 0.04); padding: 1.6rem 1.4rem; position: relative;
+  transition: border-color 0.2s, background 0.2s;
+}
+.passo:hover { border-color: var(--ouro); background: rgba(246, 248, 252, 0.06); }
+.passo::before {
+  counter-increment: passo; content: counter(passo, decimal-leading-zero);
+  font-family: var(--display); font-weight: 900; font-size: 2.6rem;
+  color: transparent; -webkit-text-stroke: 1.5px var(--ouro);
+  display: block; margin-bottom: 0.4rem;
+}
+.passo h3 { color: var(--ouro-claro); }
+.passo p { margin: 0; color: var(--branco-suave); font-size: 0.95rem; }
+
+/* ---------- Visite / contato ---------- */
+.visita-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 4vw, 3.5rem); align-items: stretch; }
+@media (max-width: 860px) { .visita-grid { grid-template-columns: 1fr; } }
+.info-bloco { display: grid; gap: 1.4rem; align-content: start; }
+.info-item h3 { margin-bottom: 0.25rem; font-size: 1.05rem; color: var(--ouro-claro); }
+.info-item p { margin: 0; color: var(--branco-suave); }
+.mapa { border-radius: var(--radius); overflow: hidden; min-height: 380px; border: 1px solid rgba(245, 184, 0, 0.3); }
+.mapa iframe { width: 100%; height: 100%; min-height: 380px; border: 0; display: block; }
+
+/* ---------- FAQ ---------- */
+.faq { max-width: 800px; margin-inline: auto; display: grid; gap: 0.8rem; }
+.faq details {
+  border: 1px solid rgba(245, 184, 0, 0.28); border-radius: 12px;
+  background: rgba(246, 248, 252, 0.04); overflow: hidden; transition: border-color 0.2s;
+}
+.faq details[open] { border-color: var(--ouro); }
+.faq summary {
+  cursor: pointer; padding: 1.05rem 1.3rem; font-weight: 600; color: var(--branco);
+  list-style: none; display: flex; justify-content: space-between; gap: 1rem; align-items: center;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--ouro); font-size: 1.5rem; line-height: 1; font-family: var(--display); }
+.faq details[open] summary::after { content: "–"; }
+.faq .resp { padding: 0 1.3rem 1.2rem; color: var(--branco-suave); }
+.faq .resp p { margin: 0; }
+
+/* ---------- CTA final ---------- */
+.cta-final {
+  text-align: center; border-block: 1px solid rgba(245, 184, 0, 0.3);
+  background:
+    radial-gradient(ellipse 60% 100% at 50% 0%, rgba(245, 184, 0, 0.12), transparent);
+}
+.cta-final h2 { font-size: clamp(1.9rem, 1.4rem + 2.6vw, 3.2rem); }
+.cta-final .acoes { justify-content: center; }
+
+/* ---------- Footer ---------- */
+footer { background: rgba(4, 9, 20, 0.85); padding-block: 3rem 6.5rem; border-top: 1px solid rgba(245, 184, 0, 0.25); }
+.foot-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 2rem; }
+@media (max-width: 760px) { .foot-grid { grid-template-columns: 1fr; } }
+footer h3 { font-size: 0.95rem; color: var(--ouro-claro); }
+footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.45rem; }
+footer a { color: var(--branco-suave); text-decoration: none; }
+footer a:hover { color: var(--ouro-claro); text-decoration: underline; }
+.copy { margin-top: 2.4rem; font-size: 0.78rem; color: rgba(246, 248, 252, 0.5); text-align: center; }
+
+/* ---------- WhatsApp flutuante ---------- */
+.wpp-float {
+  position: fixed; right: 18px; bottom: 18px; z-index: 60;
+  width: 58px; height: 58px; border-radius: 999px;
+  background: var(--whatsapp); color: #fff;
+  display: grid; place-items: center; text-decoration: none;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+  transition: transform 0.18s var(--ease), box-shadow 0.18s;
+}
+.wpp-float:hover { transform: translateY(-3px) scale(1.04); }
+.wpp-float svg { width: 30px; height: 30px; }
+
+/* ---------- Revelação ---------- */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+.reveal.on { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .cat img, .btn { transition: none; }
+}
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
