@@ -76,7 +76,13 @@
   .rpchat-in input{flex:1;border:1px solid rgba(0,0,0,.15);border-radius:12px;padding:10px 12px;font:400 13.5px Inter,system-ui,sans-serif;outline:none}
   .rpchat-send{border:none;border-radius:12px;width:42px;color:#fff;cursor:pointer;font-size:16px}
   .rpchat-wa{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 14px 12px;padding:11px;border-radius:12px;background:#25d366;color:#063a1e;font:800 13px Inter,system-ui,sans-serif;text-decoration:none}
-  @media (max-width:480px){.rpchat-panel{right:8px;bottom:80px}}
+  @media (max-width:640px){
+    .rpchat-panel{right:0;left:0;bottom:0;width:100%;max-width:none;max-height:88vh;max-height:88dvh;border-radius:18px 18px 0 0}
+    .rpchat-msgs{min-height:180px}
+    .rpchat-in input{font-size:16px}
+    .rpchat-btn{right:14px;bottom:14px}
+    .rpchat-hint{right:80px;bottom:26px}
+  }
   `;
 
   function init() {
