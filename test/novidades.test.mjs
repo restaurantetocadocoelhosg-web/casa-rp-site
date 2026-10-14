@@ -143,3 +143,19 @@ test('fonte adulterada com 100 posts: só 20 páginas novas por dia', async () =
   assert.equal(r.novas, 20);
   assert.equal(r.adiadas, 80);
 });
+
+test('título: sem maiúsculas gritando, marcas certas, sem cortar palavra', async () => {
+  const { arrumarTitulo } = await import('../ferramentas/novidades.mjs');
+  assert.equal(arrumarTitulo('RESISTÊNCIA BELLA DUCHA 4T: A SOLUÇÃO PERFEITA PARA SEU CHUVEIRO'), 'Resistência Bella Ducha 4T: a solução perfeita para seu chuveiro');
+  assert.equal(arrumarTitulo('Resistência Tubular U: a solução prática que sua manutenção e reposição precisava. Compatível com diversos equipamentos industriais'), 'Resistência Tubular U: a solução prática que sua manutenção e reposição precisava');
+  const longo = arrumarTitulo('Resistências para secadoras hospitalares: eficiência térmica garantida e peças sob medida para sua lavanderia hospitalar');
+  assert.ok(longo.endsWith('medida…') && Array.from(longo).length <= 91);
+});
+
+test('acendedor vira novidade, mas sem botão para página de forno', async () => {
+  const raiz = mkdtempSync(join(tmpdir(), 'nov-'));
+  const r = await gerarNovidades({ itens: [item({ legenda: 'Acendedor Elétrico Casa RP: praticidade no churrasco\n\nAcende carvão sem álcool, ideal para forno de pizza também.' })] }, { raiz, baixar: fotoFalsa });
+  assert.equal(r.paginas, 1);
+  const dir = readdirSync(join(raiz, 'novidades')).find((n) => n !== 'index.html');
+  assert.doesNotMatch(readFileSync(join(raiz, 'novidades', dir, 'index.html'), 'utf8'), /btn-borda" href="\/resistencia/);
+});

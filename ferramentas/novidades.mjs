@@ -37,9 +37,33 @@ const TERMOS = [
   ['resistencia-tubular', /tubular|ondulad/i],
 ];
 
+// Produto da loja que ainda não tem página própria: vira novidade, mas sem botão "ver linha".
+const SEM_PAGINA = /acendedor/i;
+
 export function paginaRelacionada(texto) {
+  if (SEM_PAGINA.test(texto)) return null;
   const achado = TERMOS.find(([, re]) => re.test(texto));
   return achado ? PAGINAS.find((p) => p.slug === achado[0]) : null;
+}
+const ehDeProduto = (texto) => SEM_PAGINA.test(texto) || !!paginaRelacionada(texto);
+
+const MAX_TITULO = 90;
+// Título do Instagram → título de página: 1ª frase se a linha for longa, sem cortar palavra,
+// e sem TUDO EM MAIÚSCULAS (no Google parece grito e o site já usa caixa alta no visual).
+export function arrumarTitulo(linha) {
+  let t = String(linha).replace(/[*_]/g, '').trim();
+  if (t === t.toLocaleUpperCase('pt-BR') && /[A-ZÀ-Ú]{4}/.test(t)) {
+    t = t.toLocaleLowerCase('pt-BR').replace(/^\p{L}/u, (c) => c.toLocaleUpperCase('pt-BR'))
+      .replace(/(?<![\p{L}\p{N}])(rp|fame|lorenzetti|corona|hydra|bella ducha|4t)(?![\p{L}\p{N}])/giu,
+        (m) => ({ rp: 'RP', fame: 'FAME', '4t': '4T' }[m.toLowerCase()] || m.replace(/(^|\s)\p{L}/gu, (c) => c.toUpperCase())));
+  }
+  if (Array.from(t).length > MAX_TITULO) {
+    // Corta na 1ª frase (ponto, não dois-pontos: "Tubular U:" sozinho não diz nada).
+    const frase = t.match(/^(.{25,}?[.!?])\s/u);
+    if (frase && Array.from(frase[1]).length <= MAX_TITULO) t = frase[1];
+    else t = cortar(t, MAX_TITULO).replace(/\s+\S*$/, '') + '…';
+  }
+  return t.replace(/[.:!]+$/, '').trim();
 }
 
 /** Legenda do Instagram → { titulo, paragrafos }: sem hashtags, sem bloco de contato. */
@@ -50,7 +74,7 @@ export function limparLegenda(legenda) {
     .map((l) => l.replace(/(^|\s)#[\p{L}\p{N}_]+/gu, ' ').replace(/\s{2,}/g, ' ').trim())
     .filter((l) => l && !CONTATO.test(l) && !/^[#\s]*$/.test(l));
   if (!linhas.length) return null;
-  const titulo = cortar(linhas[0].replace(/[*_]/g, '').replace(/[.:!]+$/, ''), 110).trim()
+  const titulo = arrumarTitulo(linhas[0]);
   const paragrafos = linhas.slice(1).map((l) => l.replace(/[*_]/g, '')).filter((l) => l.length > 2).slice(0, 12);
   return titulo.length >= 8 ? { titulo, paragrafos } : null;
 }
@@ -159,7 +183,7 @@ export async function gerarNovidades(dados, { raiz = RAIZ, baixar = (u) => fetch
   for (const item of itens) {
     const conteudo = limparLegenda(item.legenda);
     // Só vira página o post que fala de produto (bom dia/frase motivacional não ajuda no Google).
-    if (!conteudo || !paginaRelacionada(`${conteudo.titulo} ${conteudo.paragrafos.join(' ')}`)) continue;
+    if (!conteudo || !ehDeProduto(`${conteudo.titulo} ${conteudo.paragrafos.join(' ')}`)) continue;
     const slug = slugDe(item, conteudo.titulo, existentes);
     const dir = join(pasta, slug);
     const foto = `foto.${item.arquivo.split('.').pop().toLowerCase().replace('jpeg', 'jpg')}`;
