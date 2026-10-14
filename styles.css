@@ -297,3 +297,11 @@ footer a:hover { color: var(--ouro-claro); text-decoration: underline; }
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
+
+/* ===== Páginas de produto ===== */
+.migalha { padding-top: 1.2rem; font-size: 0.85rem; color: var(--branco-suave); }
+.migalha a { color: var(--branco-suave); text-decoration: underline; text-underline-offset: 3px; }
+.migalha a:hover { color: var(--ouro); }
+.outras-linhas { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 0.6rem; }
+.outras-linhas a { display: block; padding: 0.85rem 1rem; border: 1px solid rgba(245, 184, 0, 0.25); border-radius: 12px; color: var(--branco); text-decoration: none; font-weight: 600; transition: border-color .2s, transform .2s; }
+.outras-linhas a:hover, .outras-linhas a:focus-visible { border-color: var(--ouro); transform: translateY(-2px); }
