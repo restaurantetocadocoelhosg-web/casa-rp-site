@@ -23,18 +23,32 @@ const cortar = (s, n) => Array.from(String(s)).slice(0, n).join('');
 
 // Qual página de produto cada post reforça (link interno = SEO). Ordem importa: o primeiro que casar.
 const TERMOS = [
+  // Linhas específicas antes das genéricas: "Termostato para fritadeira" é termostato, "forno mufla" não é forno industrial.
+  ['termostato-controlador', /termostato|controlador|robertshaw/i],
+  ['resistencia-pipoqueira', /pipoqueira|pipoca/i],
+  ['resistencia-churrasqueira-eletrica', /churrasqueira/i],
+  ['resistencia-degelo-camara-fria', /degelo|c[aâ]mara fria/i],
+  ['resistencia-forno-mufla', /mufla/i],
+  ['resistencia-tubo-de-quartzo', /quartzo|infravermelh/i],
+  ['resistencia-cartucho', /cartucho/i],
+  ['aquecedor-piscina-caixa-dagua', /piscina|caixa d.?[aá]gua/i],
+  ['resistencia-chapeada-inox', /chapead|bifeteira/i],
+  ['resistencia-circular', /circular/i],
+  ['resistencia-flangeada-caldeira', /flangead|caldeira/i],
+  ['resistencia-forno-eletrico-domestico', /forno (el[eé]trico )?dom[eé]stico|embutir|nardelli/i],
   ['resistencia-forno-industrial', /forno|turbo|padaria|pizz/i],
   ['resistencia-fritadeira-eletrica', /fritadeira|fritura/i],
   ['resistencia-banho-maria', /banho[- ]?maria|self[- ]?service/i],
   ['resistencia-cafeteira', /cafeteira|caf[eé]/i],
   ['resistencia-autoclave', /autoclave/i],
-  ['resistencia-secadora-hospitalar', /secadora|aletad/i],
+  ['resistencia-secadora-hospitalar', /secadora/i],
   ['resistencia-imersao-boiler', /imers[aã]o|boiler/i],
   ['resistencia-mica', /\bmica\b|injetora|extrusora/i],
   ['resistencia-sauna-seca', /sauna/i],
   ['resistencia-chuveiro-lorenzetti', /chuveiro|ducha|lorenzetti|\bfame\b|\bcorona\b|\bhydra\b/i],
   ['fio-resistencia', /\bfio\b/i],
-  ['resistencia-tubular', /tubular|ondulad/i],
+  ['resistencia-tubular', /tubular|ondulad|barra reta/i],
+  ['resistencia-aletada-estufa', /aletad|estufa/i],
 ];
 
 // Produto da loja que ainda não tem página própria: vira novidade, mas sem botão "ver linha".

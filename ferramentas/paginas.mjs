@@ -2,7 +2,9 @@
 // Texto revisado à mão: NÃO inventar marca, prazo ou preço que a loja não confirmou.
 // Gerar: node ferramentas/gerar-paginas.mjs
 
-export const PAGINAS = [
+import { NOVAS } from './paginas-novas.mjs';
+
+const BASE = [
   {
     slug: 'resistencia-forno-industrial',
     nome: 'Fornos industriais e comerciais',
@@ -225,3 +227,5 @@ export const PAGINAS = [
     ],
   },
 ];
+
+export const PAGINAS = [...BASE, ...NOVAS];

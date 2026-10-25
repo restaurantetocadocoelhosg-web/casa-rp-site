@@ -8,7 +8,7 @@ import { RAIZ, SITE, esc, semTags, wpp, documento, sitemap, hojeSP } from './lay
 
 function pagina(p) {
   const url = `${SITE}/${p.slug}/`;
-  const msg = `Olá! Vim pelo site e quero orçamento de resistência para ${p.curto.toUpperCase()}.`;
+  const msg = p.pedido || `Olá! Vim pelo site e quero orçamento de resistência para ${p.curto.toUpperCase()}.`;
   const outras = PAGINAS.filter((o) => o.slug !== p.slug);
   const ld = [
     {

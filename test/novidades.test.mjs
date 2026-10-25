@@ -50,6 +50,13 @@ test('cada post aponta para a página do produto certo', () => {
   assert.equal(paginaRelacionada('Resistência Forno Turbo').slug, 'resistencia-forno-industrial');
   assert.equal(paginaRelacionada('Resistência Bella Ducha 4T Lorenzetti').slug, 'resistencia-chuveiro-lorenzetti');
   assert.equal(paginaRelacionada('Deus te dando uma nova chance! Bom dia'), null);
+  // Linhas novas: a específica ganha da genérica.
+  assert.equal(paginaRelacionada('Termostato para FRITADEIRA elétrica').slug, 'termostato-controlador');
+  assert.equal(paginaRelacionada('Resistência FORNO MUFLA').slug, 'resistencia-forno-mufla');
+  assert.equal(paginaRelacionada('Resistência para FORNO NARDELLI').slug, 'resistencia-forno-eletrico-domestico');
+  assert.equal(paginaRelacionada('Resistência ALETADA para estufas').slug, 'resistencia-aletada-estufa');
+  assert.equal(paginaRelacionada('Resistências para secadoras hospitalares aletadas').slug, 'resistencia-secadora-hospitalar');
+  assert.equal(paginaRelacionada('Acendedor elétrico para churrasqueira'), null);
 });
 
 test('gera página, foto local, índice; rodar de novo não duplica', async () => {
